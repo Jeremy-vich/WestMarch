@@ -1,7 +1,7 @@
 {
   "id": "westmarch",
   "title": "WestMarch Système",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Jérémy Vich <Yebou>",
   "compatibility": {
     "minimum": "12",
@@ -12,8 +12,7 @@
     "./index.js"
   ],
   "scripts": [],
-  "styles": [],
-  "url": "https://github.com/Jeremy-vich/WestMarch",
-  "manifest": "https://github.com/Jeremy-vich/WestMarch/releases/download/FoundryVTT/module.json",
-  "download": "https://github.com/Jeremy-vich/WestMarch/releases/download/FoundryVTT/westmarch.zip"
+  "styles": [
+    "./styles/chat.css"
+  ]
 }
