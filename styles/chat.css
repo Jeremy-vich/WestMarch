@@ -13,44 +13,26 @@
     border-radius: 5px 5px 0 0;
 }
 
-a.item.rolls.active {}
-
 .tabbedchatlog .item {
     height: 18px;
     flex: 1;
-}
-
-.type0 {
-    display: none;
-}
-
-.type1 {
-    display: none;
-}
-
-.type4 {
-    display: none;
-}
-
-.type5 {
-    display: none;
 }
 
 .hardHide {
     display: none !important;
 }
 
-#icNotification {
+#ICNotification {
     top: 0px;
     right: 196px;
 }
 
-#oocNotification {
+#OOCNotification {
     top: 0px;
     right: 8px;
 }
 
-#rollsNotification {
+#OTHERNotification {
     top: 0px;
     right: 115px;
 }
