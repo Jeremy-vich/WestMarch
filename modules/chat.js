@@ -1,4 +1,4 @@
-var tabSelected = "ic";
+var tabSelected = "IC";
 var turndown = undefined;
 
 export function ChatHooks() {
@@ -19,19 +19,22 @@ function renderChatMessage(message, html, messageData) {
         html.hide();
     }
     switch(tabSelected) {
-        case "ic":
+        case "IC":
             if(message.style != CONST.CHAT_MESSAGE_STYLES.IC) {
                 html.hide();
+                $('#'+Object.keys(CONST.CHAT_MESSAGE_STYLES).find(key => CONST.CHAT_MESSAGE_STYLES[key] === message.style)+"Notification").show();
             }
             break;
-        case "other":
+        case "OTHER":
             if(message.style != CONST.CHAT_MESSAGE_STYLES.OTHER) {
                 html.hide();
+                $('#'+Object.keys(CONST.CHAT_MESSAGE_STYLES).find(key => CONST.CHAT_MESSAGE_STYLES[key] === message.style)+"Notification").show();
             }
             break;
-        case "ooc":
+        case "OOC":
             if(message.style != CONST.CHAT_MESSAGE_STYLES.OOC) {
                 html.hide();
+                $('#'+Object.keys(CONST.CHAT_MESSAGE_STYLES).find(key => CONST.CHAT_MESSAGE_STYLES[key] === message.style)+"Notification").show();
             }
             break;
     }
@@ -39,16 +42,16 @@ function renderChatMessage(message, html, messageData) {
 
 function renderChatLog(log, html, data) {
     let toPrepend = '<nav class="tabbedchatlog tabs">';
-    toPrepend += `<a id="aIC" class="item ic" data-tab="ic">Characters</a><i id="icNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
-    toPrepend += `<a id="aRoll" class="item other" data-tab="other">Rolls</a><i id="rollsNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
-    toPrepend += `<a id="aOOC" class="item ooc" data-tab="ooc">Joueurs</a></nav><i id="oocNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
+    toPrepend += `<a id="aIC" class="item IC" data-tab="IC">Characters</a><i id="ICNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
+    toPrepend += `<a id="aRoll" class="item OTHER" data-tab="OTHER">Rolls</a><i id="OTHERNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
+    toPrepend += `<a id="aOOC" class="item OOC" data-tab="OOC">Joueurs</a></nav><i id="OOCNotification" class="notification-pip fas fa-exclamation-circle" style="display: none;"></i>`;
     html.prepend(toPrepend);
 
     $('.tabbedchatlog').on('click', '.item', function() {
         changeTab($(this).data('tab'));
     });
 
-    changeTab("ic");
+    changeTab("IC");
 }
 
 function changeTab(tab) {
@@ -57,12 +60,13 @@ function changeTab(tab) {
     $('.tabbedchatlog').find('.item').not('.'+tab).removeClass('active');
     $.each($('.chat-message'), function(i, item){
         let message = game.messages.get($(item).data('message-id'));
-        if(Object.keys(CONST.CHAT_MESSAGE_STYLES).find(key => CONST.CHAT_MESSAGE_STYLES[key] === message.style).toLowerCase() == tab && isPartyMember(message.author)) {
+        if(Object.keys(CONST.CHAT_MESSAGE_STYLES).find(key => CONST.CHAT_MESSAGE_STYLES[key] === message.style) == tab && isPartyMember(message.author)) {
             $(item).show();
         } else {
             $(item).hide();
         }
     });
+    $('#'+tab+'Notification').hide();
 }
 
 function isPartyMember(user) {
